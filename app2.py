@@ -575,7 +575,7 @@ def doupdates():
         #100
         #800
         try:
-            if math.fabs(tobuy[coin] / (balance * 75)) > 0.05: 
+            if math.fabs(tobuy[coin] / (balance * 75)) > 0.05 / 75: 
                 tobuy[coin] = tobuy[coin] - pos[coin] / 10
                 if 'BTC' in coin:
                     tobuy[coin] = tobuy[coin] / 10
