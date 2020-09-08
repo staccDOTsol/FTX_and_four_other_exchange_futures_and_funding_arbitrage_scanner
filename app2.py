@@ -6,6 +6,7 @@ import sys
 import threading
 import linecache
 from time import sleep
+minArb = 0.04*3*365*75
 import ccxt
 SECONDS_IN_DAY	  = 3600 * 24
 from cryptofeed import FeedHandler
@@ -199,7 +200,7 @@ def doCalc():
                         thearb = thearb / expis[dt]
                         #print(thearb)
                         #print( ' ' )
-                        if thearb > 36.5 and coin != 'USDT':
+                        if thearb > 3.65 and coin != 'USDT':
                            # print(exes[coin][dt])
                             thearbs.append({'exlong': exes[coin][dt][minimum], 'exshort': exes[coin][dt][maximum], 'coin': coin, 'thearb': thearb, 'dt': dt, 'arbscoindt': arbs[coin][dt]})
                             print({'exlong': exes[coin][dt][minimum], 'exshort': exes[coin][dt][maximum], 'coin': coin, 'thearb': thearb, 'dt': dt, 'arbscoindt': arbs[coin][dt]})
@@ -208,6 +209,7 @@ def doCalc():
                 except:
                     PrintException()
     # todo remove
+    """
     for coin in coins:
         try:
             array = [mids['ftx'][coin + '-PERP'], mids['ftx'][coin + '-0925']]
@@ -217,7 +219,7 @@ def doCalc():
         #           if coin == 'BTC':
         ##               print(arbs[coin][dt])
         #              print(maximum / minimum)
-            thearb = (((maximum / minimum)-1)*100)*365 * 10 #1.1/1.05 = 
+            thearb = (((maximum / minimum)-1)*100)*365 * 10  #1.1/1.05 = 
             #print(thearb)
             #print(expis[dt])
             #print('thearb of ' + coin + ' at ' + dt + ' in total ' + str(thearb)) 
@@ -231,6 +233,7 @@ def doCalc():
           #  print('and after figuring out daily arb it\'s ' +  str(thearb))
         except:
             abc=123#PrintException()
+    """
     premiumwinners = []
     for arb in thearbs:
         if arb['coin'] != 'USDT':
@@ -241,13 +244,19 @@ ftx	 = ccxt.ftx({
 'rateLimit': 36
 
 })
-binance	 = ccxt.binance({
+binance	 = ccxt.binance({'apiKey': '7b213be861b47912231576cfcca7c19164cb650d1a2a82787654f8f6186616ac',   
+			'secret': '6a8e92b373268c108168db8466b353e75856886b14d16dadcb455b159400db8f',
 'enableRateLimit': True,
 "options":{"defaultMarket":"futures"},
 'urls': {'api': {
-                         'public': 'https://dapi.binance.com/dapi/v1',
-                         'private': 'https://dapi.binance.com/dapi/v1',},}
+                         'public': 'https://testnet.binancefuture.com/dapi/v1',
+                         'private': 'https://testnet.binancefuture.com/dapi/v1',},}
 })
+markets = binance.fetchMarkets()
+futs = '200925'
+for m in markets:
+    print(m['id'])
+   # binance.dapiPrivatePostLeverage({'symbol': m['id'], 'leverage': 75})
 huobi = ccxt.huobipro({"urls": {'api':{'public': 'https://api.hbdm.com/swap-api',
 'private': 'https://api.hbdm.com/swap-api'}}})
 insts			   = binance.fetchMarkets()
@@ -293,7 +302,10 @@ for market in huobi:
     #print(expis)
 
     #print(huobi[market])
+\
+"""
 bcontracts = []
+
 pairs = requests.get('https://dapi.binance.com/dapi/v1/exchangeInfo').json()
 for symbol in pairs['symbols']:
     split = len(symbol['baseAsset'])
@@ -303,6 +315,7 @@ for symbol in pairs['symbols']:
     bcontracts.append(normalized)
 config = {TICKER: bcontracts}
 fh.add_feed(BinanceFutures(config=config, callbacks={TICKER: TickerCallback(ticker)}))
+"""
 ofuts = []
 oswaps = []
 swaps = requests.get('https://www.okex.com/api/swap/v3/instruments').json()
@@ -342,7 +355,7 @@ for fut in bin_futures_all:
         #print(precisions_binance[fut['info']['symbol']])
     except:
         PrintException()
-"""
+
 ftx = requests.get("https://ftx.com/api/funding_rates").json()['result']
 doneFtx = {}
 for rate in ftx:
@@ -356,7 +369,7 @@ for rate in ftx:
 allfuts = []
 expiries = {}
 hcontracts = []
-"""
+
 for contract in huobis:
     for futureend in futureends:
         hcontracts.append(contract + futureend)
@@ -374,7 +387,7 @@ for market in kraken['tickers']:
 #print(kcontracts)
 config = {TICKER: kcontracts}
 fh.add_feed(KrakenFutures(config=config, callbacks={TICKER: TickerCallback(ticker)}))
-"""
+
 fcontracts = []
 ftxmarkets = requests.get("https://ftx.com/api/futures").json()['result']
 for market in ftxmarkets:
@@ -383,38 +396,47 @@ for market in ftxmarkets:
 config = {TICKER: fcontracts}
 fh.add_feed(FTX(config=config, callbacks={TICKER: TickerCallback(ticker)}))
 #loop = asyncio.get_event_loop()
+"""
 t = threading.Thread(target=loop_in_thread, args=())
 t.start()
 t = threading.Thread(target=loop_in_thread2, args=())
 t.start()
 print(expis)
+
+import random, string
 import requests
 import math
 
 funding = {}
-exchanges = ['ftx']#['binance', 'kraken', 'ftx', 'phemex', 'okex']
+exchanges = ['binance']#['binance', 'kraken', 'ftx', 'phemex', 'okex']
 for ex in exchanges:
     funding[ex] = {}
+def randomword(length):
+	   letters = string.ascii_lowercase
+	   return ''.join(random.choice(letters) for i in range(length))
 def doupdates():
     global fundingwinners
+    #todo: replace with dapi.binance.com/, and change all of the ccxt stuff in ccxt/binance.py to dapi.binance.com
+    binance2 = requests.get('https://testnet.binancefuture.com/dapi/v1/premiumIndex').json()
+    for obj in binance2:
+        try:
+            funding['binance'][obj['symbol'].replace('USDT', '')] = float(obj['lastFundingRate']) * 3
+        except:
+            abc=123
     """
-    binance = requests.get('https://fapi.binance.com/fapi/v1/premiumIndex').json()
-    for obj in binance:
-        
-        funding['binance'][obj['symbol'].replace('USDT', '')] = float(obj['lastFundingRate']) * 3
     kraken = requests.get('https://futures.kraken.com/derivatives/api/v3/tickers').json()['tickers']
     for obj in kraken:
         if 'tag' in obj:
             if obj['tag'] == 'perpetual':
                 funding['kraken'][obj['pair'].replace('XBT','BTC').replace(':USD', '')] = float(obj['fundingRate']) * 3
-    """        
+           
     ftx = requests.get('https://ftx.com/api/funding_rates').json()['result']
     takenftx = []
     for obj in ftx:
         if obj['future'].replace('-PERP','') not in takenftx:
             takenftx.append(obj['future'].replace('-PERP',''))
             funding['ftx'][obj['future'].replace('-PERP','')] = float(obj['rate']) * 24
-    """
+    
     phemproducts = requests.get('https://api.phemex.com/exchange/public/cfg/v2/products').json()['data']['products']
     phemperps = []
     for obj in phemproducts:
@@ -439,32 +461,118 @@ def doupdates():
         for coin in funding[ex]:
             rates[ex][coin].append(float(funding[ex][coin]))
     APRS = {}
+    longshorts = {}
     for ex in rates:
         APRS[ex] = {}
         for coin in rates[ex]:
                 
             maximum = max(rates[ex][coin])
             minimum = min(rates[ex][coin])
-            if math.fabs(maximum) > math.fabs(minimum):
-                APRS[ex][coin] = math.fabs(maximum) * 365 * 100 * 10
-            else:
-                APRS[ex][coin] = math.fabs(minimum) * 365 * 100 * 10
 
-    #print(APRS)
+            if math.fabs(maximum) > math.fabs(minimum):
+                if (math.fabs(maximum) * 365 * 100 * 75 / 2) - minArb > 0:
+                    if maximum < 0:
+                        longshorts[coin] = 'long'
+                    else:
+                        longshorts[coin] = 'short'
+                    APRS[ex][coin] = (math.fabs(maximum) * 365 * 100 * 75 / 2) - minArb
+            else:
+                if  (math.fabs(minimum) * 365 * 100 * 75 / 2) - minArb > 0:
+                    if minimum < 0:
+                        longshorts[coin] = 'long'
+                    else:
+                        longshorts[coin] = 'short'
+                    APRS[ex][coin] = (math.fabs(minimum) * 365 * 100 * 75 / 2) - minArb
+
+    
     fundingwinners = []
+    t = 0
+    c = 0
     for ex in APRS:
         maximum = 0
 
         winner = ""
         for coin in APRS[ex]:
-            if APRS[ex][coin] > 365:
+            if APRS[ex][coin] > 365 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
+                t = t + APRS[ex][coin]
+                c = c + 1
+                
                 fundingwinners.append({'ex': ex, 'coin': coin, 'arb': APRS[ex][coin]})
                 print({'ex': ex, 'coin': coin, 'arb': APRS[ex][coin]})
        #print('The Maximum funding opportunity on ' + ex + ' now is ' + winner + ' with ' + str(maximum) + '%!')
+    percs = {}
+    tobuy = {}
+    for ex in APRS:
+        maximum = 0
+
+        winner = ""
+        for coin in APRS[ex]:
+            if APRS[ex][coin] > 365 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
+                    percs[coin] = APRS[ex][coin] / t
+                                   #((1000000 * 0.66) * 75 /2) / 10
+                    tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
+                    if 'BTC' in coin:
+                        tobuy[coin] = tobuy[coin] / 10 
+                    tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
+                  
+    for coin in longshorts:
+        if longshorts[coin] == 'short':
+            try:
+                tobuy[coin] = tobuy[coin] * -1
+                tobuy[coin.replace('PERP', futs)] = tobuy[coin.replace('PERP', futs)] * -1
+            except:
+                abc=123
+    
+    for coin in tobuy:
+        #-100 btc
+        #-800 
+        #100
+        #800
+        try:
+            tobuy[coin] = tobuy[coin] - pos[coin] / 10
+            if 'BTC' in coin:
+                tobuy[coin] = tobuy[coin] / 10
+            print(tobuy)
+            direction = 'BUY'
+            if tobuy[coin] < 0:
+                direction = 'SELL'
+                tobuy[coin] = tobuy[coin] * -1
+            if tobuy[coin] != 0:
+                print(tobuy[coin])
+                print({'symbol': coin, 'side': direction, 'type': 'MARKET', 'quantity': int(tobuy[coin]),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'MARKET', 'quantity': int(tobuy[coin]),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+        except:
+            PrintException()
+    print(tobuy)
+balance = 0
+pos = {}
+def updatePositions():
+    global positions
+    positions	   = binance.dapiPrivateGetPositionRisk()
+    for p in positions:
+        pos[p['symbol']] = float(p['positionAmt']) * 10
+        if 'BTC' in p['symbol']:
+            pos[p['symbol']] = pos[p['symbol']] * 10
+    print(pos)
+def updateBalance():
+    global balance
+    bal2 = binance.fetchBalance()
+    newbal = 0
+    #print(bal2)
+    ##print(bal2)
+    ##print(bal2)
+    for coin in bal2['info']['assets']:
+        #print(coin)
+        newbal = newbal + float(coin['marginBalance'])
+
+        im = float(coin['initialMargin'])
+        if newbal != 0:
+            im = im / newbal
+    balance = newbal / 10000
+    print(balance)
 while True:
-    
-    
-    sleep(10)
+    updatePositions()
+    updateBalance()
     for ex in mids:
         for dt in mids[ex]:
             if dt.split('-')[1] not in expis:
@@ -483,6 +591,6 @@ while True:
                         expis[dt.split('-')[1]] = days
                 except:
                     abc=123
-    doCalc()
+    #doCalc()
     doupdates()
-    #sleep(10)
+    sleep(60)

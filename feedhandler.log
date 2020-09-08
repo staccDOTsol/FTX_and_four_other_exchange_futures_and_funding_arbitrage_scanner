@@ -1664,3 +1664,63 @@ Traceback (most recent call last):
   File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
     raise self.connection_closed_exc()
 websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-08 05:51:12,976 : WARNING : FTX: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 105, in read
+    data = await reader(2)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-08 13:19:13,559 : WARNING : FTX: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 105, in read
+    data = await reader(2)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason

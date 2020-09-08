@@ -10,4 +10,10 @@ app2.py is futures and funding nonsense, at 10x leverage hedge and 10x perp/fut.
 Run python app2.py after pip install whatever we need cryptofeed? requests? ccxt? dunno? 
 
 
+#todo: replace with dapi.binance.com/, and change all of the ccxt stuff in ccxt/binance.py to dapi.binance.com
+
+
+Note that app2 now acts on funding opportunities in binance testnet as of this most recent commit.s
+
+
 Check localhost:8080/json for some output
