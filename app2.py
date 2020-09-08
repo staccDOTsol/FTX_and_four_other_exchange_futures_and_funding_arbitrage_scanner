@@ -1,6 +1,6 @@
 apikey = ''
 apisecret = ''
-divisor=100
+divisor=5
 
 import requests
 import math
@@ -561,7 +561,7 @@ def doupdates():
         #100
         #800
         try:
-            if math.fabs(tobuy[coin] / (balance * 75)) > ((1/divisor) * 5) / 75: 
+            if math.fabs(tobuy[coin] / (balance * 75)) > ((1/divisor) * 0.5) / 75: 
                 tobuy[coin] = tobuy[coin] - pos[coin] / 10
                 if 'BTC' in coin:
                     tobuy[coin] = tobuy[coin] / 10
