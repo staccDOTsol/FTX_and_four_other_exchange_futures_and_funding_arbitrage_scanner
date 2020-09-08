@@ -1,5 +1,6 @@
 apikey = ''
 apisecret = ''
+divisor=100
 
 import requests
 import math
@@ -110,7 +111,7 @@ async def ticker(feed, pair, bid, ask, timestamp, ex):
 
 
    # print(feed + '-' + name + '-' + dt +': ' + str( 0.5 * ( float(bid) + float(ask))))
-    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+    mids[ex][pair] = {'bid': float(bid), 'ask': float(ask)}#name + '-' + dt] = {'bid': float(bid), 'ask': float(ask)}
 
 async def book(feed, pair, book, timestamp, receipt_timestamp):
     global mids
@@ -141,22 +142,7 @@ def cancelall(coin):
         binance.dapiPrivateDeleteAllopenorders({'symbol': coin})
     except Exception as e:
         print(e)
-def get_bbo( contract ): # Get best b/o excluding own orders
-    try:
-        
-        ob	  = binance.fetchOrderBook( contract)
-        bids	= ob[ 'bids' ]
-        asks	= ob[ 'asks' ]
-   
-        try:
-            best_bid	= bids[0][0]
-            best_ask	= asks[0][0]
-        except:
-            PrintException()
-        
-        return { 'bid': best_bid, 'ask': best_ask }
-    except: 
-        PrintException()
+
 def doCalc():
     global premiumwinners
     dts = []
@@ -575,7 +561,7 @@ def doupdates():
         #100
         #800
         try:
-            if math.fabs(tobuy[coin] / (balance * 75)) > 0.05 / 75: 
+            if math.fabs(tobuy[coin] / (balance * 75)) > ((1/divisor) * 5) / 75: 
                 tobuy[coin] = tobuy[coin] - pos[coin] / 10
                 if 'BTC' in coin:
                     tobuy[coin] = tobuy[coin] / 10
@@ -586,12 +572,15 @@ def doupdates():
                     tobuy[coin] = tobuy[coin] * -1
                 if tobuy[coin] != 0:
                     #print(tobuy[coin])
-                    bbo = get_bbo(coin)
+                    bbo = mids['binance'][coin.replace('USD', '-USD')]
+                    
+                    print(int(tobuy[coin] / divisor))
+                    print(tobuy[coin])
                     if direction == 'SELL':
                         
-                        binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['best_bid'], 'quantity': int(tobuy[coin] / 100),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['bid'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
                     else:
-                        binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['best_ask'], 'quantity': int(tobuy[coin] / 100),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['ask'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
         except:
             PrintException()
     print(tobuy)
@@ -619,11 +608,12 @@ def updateBalance():
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
-    balance = newbal
+    btc_perp = (mids['binance']['BTC-USD_PERP']['ask'] + mids['binance']['BTC-USD_PERP']['bid']) / 2
+                    
+    balance = newbal * btc_perp
     print(balance)
 while True:
     updatePositions()
-    updateBalance()
     for ex in mids:
         for dt in mids[ex]:
             if dt.split('-')[1] not in expis:
@@ -643,5 +633,8 @@ while True:
                 except:
                     abc=123
     #doCalc()
+    sleep(10)
+    updateBalance()
+    sleep(5)
     doupdates()
-    sleep(60)
+    sleep(45)

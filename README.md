@@ -60,4 +60,8 @@ Note: on the coin-margined perps with futures, there were no opportunities at en
 
 
 
+NEEDS a minimum balance of $1000 in BTC (no other margin will work presently). If using a lesser balance, change divisor=100 along the top and replace with a number lesser than 100. Note this will create larger maker orders and mess up the exposure, meaning that my trial on youtube means basically nothing.
+
+
+
 The minimum funding opp is calculated by assuming that it doesn't long/short an entire position every time it readjusts every 8hrs. The minimum arb is therefore 410.625% APR, at leverage, a product of 0.015% fees, 75x leverage and 365x days in a year - which assumes that the +/- delta to get in a new position after adjusting for the first position is anything less than 1/3 a day.
