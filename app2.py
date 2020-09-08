@@ -1,6 +1,6 @@
 apikey = ''
 apisecret = ''
-divisor=5
+divisor=100
 
 import requests
 import math
@@ -538,6 +538,7 @@ def doupdates():
             if APRS[ex][coin] > 0 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                     percs[coin] = APRS[ex][coin] / t
                                    #((1000000 * 0.66) * 75 /2) / 10
+                    #((25 * 0.25 ) * 75 / 2) / 10
                     tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
                     if 'BTC' in coin:
                         tobuy[coin] = tobuy[coin] / 10 
@@ -545,7 +546,7 @@ def doupdates():
             elif 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                 tobuy[coin] = 0
                 tobuy[coin.replace('PERP', futs)] = 0
-    #print(percs)        
+    print(percs)        
     for coin in longshorts:
         if longshorts[coin] == 'short':
             try:
@@ -553,7 +554,8 @@ def doupdates():
                 tobuy[coin.replace('PERP', futs)] = tobuy[coin.replace('PERP', futs)] * -1
             except:
                 abc=123
-    
+    print(tobuy)
+    sleep(100)
     for coin in tobuy:
         cancelall(coin)
         #-100 btc
@@ -610,7 +612,7 @@ def updateBalance():
             im = im / newbal
     btc_perp = (mids['binance']['BTC-USD_PERP']['ask'] + mids['binance']['BTC-USD_PERP']['bid']) / 2
                     
-    balance = newbal * btc_perp
+    balance = newbal * btc_perp * 4
     print(balance)
 while True:
     updatePositions()
