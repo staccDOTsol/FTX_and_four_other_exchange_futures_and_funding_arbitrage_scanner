@@ -22,7 +22,7 @@ binance	 = ccxt.binance({'apiKey': apikey,
 })
 
 print(dir(binance))
-#sleep(10)
+sleep(1)
 SECONDS_IN_DAY	  = 3600 * 24
 from cryptofeed import FeedHandler
 from cryptofeed import FeedHandler
@@ -135,13 +135,12 @@ async def book(feed, pair, book, timestamp, receipt_timestamp):
     #print(mids)
     
     #print(f'Timestamp: {timestamp} Feed: {feed} Pair: {pair} Book Bid Size is {len(book[BID])} Ask Size is {len(book[ASK])}')
-def cancelall():
+def cancelall(coin):
     try:
-        binance.dapiPrivateDeleteAllopenorders()
+        print(coin)
+        binance.dapiPrivateDeleteAllopenorders({'symbol': coin})
     except Exception as e:
         print(e)
-        sleep(10)
-        cancelall()
 def get_bbo( contract ): # Get best b/o excluding own orders
     try:
         
@@ -557,6 +556,9 @@ def doupdates():
                     if 'BTC' in coin:
                         tobuy[coin] = tobuy[coin] / 10 
                     tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
+            elif 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
+                tobuy[coin] = 0
+                tobuy[coin.replace('PERP', futs)] = 0
     #print(percs)        
     for coin in longshorts:
         if longshorts[coin] == 'short':
@@ -565,8 +567,9 @@ def doupdates():
                 tobuy[coin.replace('PERP', futs)] = tobuy[coin.replace('PERP', futs)] * -1
             except:
                 abc=123
-    cancelall()
+    
     for coin in tobuy:
+        cancelall(coin)
         #-100 btc
         #-800 
         #100
