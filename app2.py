@@ -1,3 +1,6 @@
+apikey = ''
+apisecret = ''
+
 import requests
 import math
 from datetime import timedelta
@@ -6,7 +9,7 @@ import sys
 import threading
 import linecache
 from time import sleep
-minArb = 0.04*3*365*75
+
 import ccxt
 SECONDS_IN_DAY	  = 3600 * 24
 from cryptofeed import FeedHandler
@@ -25,7 +28,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 from flask import jsonify
 
+minArb = 0.015
+print(minArb)
 
+minArb = minArb * 75
+print(minArb)
+minArb = minArb * 365 
+print(minArb)
 premiumwinners = []
 @app.route('/json')
 def summary():
@@ -114,6 +123,22 @@ async def book(feed, pair, book, timestamp, receipt_timestamp):
     #print(mids)
     
     #print(f'Timestamp: {timestamp} Feed: {feed} Pair: {pair} Book Bid Size is {len(book[BID])} Ask Size is {len(book[ASK])}')
+def get_bbo( contract ): # Get best b/o excluding own orders
+    try:
+        
+        ob	  = binance.fetchOrderBook( contract)
+        bids	= ob[ 'bids' ]
+        asks	= ob[ 'asks' ]
+   
+        try:
+            best_bid	= bids[0][0]
+            best_ask	= asks[0][0]
+        except:
+            PrintException()
+        
+        return { 'bid': best_bid, 'ask': best_ask }
+    except: 
+        PrintException()
 def doCalc():
     global premiumwinners
     dts = []
@@ -244,19 +269,22 @@ ftx	 = ccxt.ftx({
 'rateLimit': 36
 
 })
-binance	 = ccxt.binance({'apiKey': '7b213be861b47912231576cfcca7c19164cb650d1a2a82787654f8f6186616ac',   
-			'secret': '6a8e92b373268c108168db8466b353e75856886b14d16dadcb455b159400db8f',
+binance	 = ccxt.binance({'apiKey': apikey,   
+			'secret': apisecret,
 'enableRateLimit': True,
 "options":{"defaultMarket":"futures"},
 'urls': {'api': {
-                         'public': 'https://testnet.binancefuture.com/dapi/v1',
-                         'private': 'https://testnet.binancefuture.com/dapi/v1',},}
+                         'public': 'https://dapi.binance.com/dapi/v1',
+                         'private': 'https://dapi.binance.com/dapi/v1',},}
 })
 markets = binance.fetchMarkets()
 futs = '200925'
 for m in markets:
-    print(m['id'])
-   # binance.dapiPrivatePostLeverage({'symbol': m['id'], 'leverage': 75})
+    #print(m['id'])
+    try:
+        binance.dapiPrivatePostLeverage({'symbol': m['id'], 'leverage': 75})
+    except:
+        abc=123
 huobi = ccxt.huobipro({"urls": {'api':{'public': 'https://api.hbdm.com/swap-api',
 'private': 'https://api.hbdm.com/swap-api'}}})
 insts			   = binance.fetchMarkets()
@@ -417,7 +445,7 @@ def randomword(length):
 def doupdates():
     global fundingwinners
     #todo: replace with dapi.binance.com/, and change all of the ccxt stuff in ccxt/binance.py to dapi.binance.com
-    binance2 = requests.get('https://testnet.binancefuture.com/dapi/v1/premiumIndex').json()
+    binance2 = requests.get('https://dapi.binance.com/dapi/v1/premiumIndex').json()
     for obj in binance2:
         try:
             funding['binance'][obj['symbol'].replace('USDT', '')] = float(obj['lastFundingRate']) * 3
@@ -468,7 +496,11 @@ def doupdates():
                 
             maximum = max(rates[ex][coin])
             minimum = min(rates[ex][coin])
-
+      #      print(coin)
+      #      print(math.fabs(maximum) * 100)
+      #      print(math.fabs(minimum) * 100)     
+      #      print(str(0.015*3))
+      #      print(' ')
             if math.fabs(maximum) > math.fabs(minimum):
                 if (math.fabs(maximum) * 365 * 100 * 75 / 2) - minArb > 0:
                     if maximum < 0:
@@ -493,12 +525,12 @@ def doupdates():
 
         winner = ""
         for coin in APRS[ex]:
-            if APRS[ex][coin] > 365 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
+            if APRS[ex][coin] > 0 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                 t = t + APRS[ex][coin]
                 c = c + 1
                 
                 fundingwinners.append({'ex': ex, 'coin': coin, 'arb': APRS[ex][coin]})
-                print({'ex': ex, 'coin': coin, 'arb': APRS[ex][coin]})
+     #           print({'ex': ex, 'coin': coin, 'arb': APRS[ex][coin]})
        #print('The Maximum funding opportunity on ' + ex + ' now is ' + winner + ' with ' + str(maximum) + '%!')
     percs = {}
     tobuy = {}
@@ -507,14 +539,14 @@ def doupdates():
 
         winner = ""
         for coin in APRS[ex]:
-            if APRS[ex][coin] > 365 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
+            if APRS[ex][coin] > 0 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                     percs[coin] = APRS[ex][coin] / t
                                    #((1000000 * 0.66) * 75 /2) / 10
                     tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
                     if 'BTC' in coin:
                         tobuy[coin] = tobuy[coin] / 10 
                     tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
-                  
+    #print(percs)        
     for coin in longshorts:
         if longshorts[coin] == 'short':
             try:
@@ -529,18 +561,23 @@ def doupdates():
         #100
         #800
         try:
-            tobuy[coin] = tobuy[coin] - pos[coin] / 10
-            if 'BTC' in coin:
-                tobuy[coin] = tobuy[coin] / 10
-            print(tobuy)
-            direction = 'BUY'
-            if tobuy[coin] < 0:
-                direction = 'SELL'
-                tobuy[coin] = tobuy[coin] * -1
-            if tobuy[coin] != 0:
-                print(tobuy[coin])
-                print({'symbol': coin, 'side': direction, 'type': 'MARKET', 'quantity': int(tobuy[coin]),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
-                binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'MARKET', 'quantity': int(tobuy[coin]),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+            if math.fabs(tobuy[coin] / (balance * 75)) > 0.05: 
+                tobuy[coin] = tobuy[coin] - pos[coin] / 10
+                if 'BTC' in coin:
+                    tobuy[coin] = tobuy[coin] / 10
+                #print(tobuy)
+                direction = 'BUY'
+                if tobuy[coin] < 0:
+                    direction = 'SELL'
+                    tobuy[coin] = tobuy[coin] * -1
+                if tobuy[coin] != 0:
+                    #print(tobuy[coin])
+                    bbo = get_bbo(coin)
+                    if direction == 'SELL':
+                        
+                        binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['best_bid'], 'quantity': int(tobuy[coin] / 100),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                    else:
+                        binance.dapiPrivatePostOrder(  {'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['best_ask'], 'quantity': int(tobuy[coin] / 100),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
         except:
             PrintException()
     print(tobuy)
@@ -568,7 +605,7 @@ def updateBalance():
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
-    balance = newbal / 10000
+    balance = newbal
     print(balance)
 while True:
     updatePositions()

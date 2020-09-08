@@ -53,3 +53,11 @@ To use this project:
 3. Transfer funds into your coin margined futures. 
 4. Run python app2.py. 
 5. If any packages are missing it will tell you which ones and you can install them using the command pip install whatever. 
+
+
+
+Note: on the coin-margined perps with futures, there were no opportunities at entry-level Binance fees (0.04%) at time of writing. As such, the bot has been redesigned to maker into position by making orders for 1/100 the size of where it wants to be, unless it's <5% of balance at leverage. This code is HIGHLY BETA. 
+
+
+
+The minimum funding opp is calculated by assuming that it doesn't long/short an entire position every time it readjusts every 8hrs. The minimum arb is therefore 410.625% APR, at leverage, a product of 0.015% fees, 75x leverage and 365x days in a year - which assumes that the +/- delta to get in a new position after adjusting for the first position is anything less than 1/3 a day.

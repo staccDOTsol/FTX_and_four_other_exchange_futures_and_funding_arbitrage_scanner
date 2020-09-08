@@ -86,9 +86,9 @@ class binance(Exchange):
             'urls': {
                 'logo': 'https://user-images.githubusercontent.com/1294454/29604020-d5483cdc-87ee-11e7-94c7-d1a8d9169293.jpg',
                 'test': {
-                    'dapiPublic': 'https://testnet.binancefuture.com/dapi/v1',
-                    'dapiPrivate': 'https://testnet.binancefuture.com/dapi/v1',
-                    'dapiPrivateV2': 'https://testnet.binancefuture.com/dapi/v2',
+                    'dapiPublic': 'https://dapi.binance.com/dapi/v1',
+                    'dapiPrivate': 'https://dapi.binance.com/dapi/v1',
+                    'dapiPrivateV2': 'https://dapi.binance.com/dapi/v2',
                     'public': 'https://testnet.binance.vision/api/v3',
                     'private': 'https://testnet.binance.vision/api/v3',
                     'v3': 'https://testnet.binance.vision/api/v3',
@@ -97,10 +97,10 @@ class binance(Exchange):
                 'api': {
                     'wapi': 'https://api.binance.com/wapi/v3',
                     'sapi': 'https://api.binance.com/sapi/v1',
-                    'dapiPublic': 'https://testnet.binancefuture.com/dapi/v1',
-                    'dapiPrivate': 'https://testnet.binancefuture.com/dapi/v1',
-                    'dapiData': 'https://testnet.binancefuture.com/futures/data',
-                    'dapiPrivateV2': 'https://testnet.binancefuture.com/dapi/v2',
+                    'dapiPublic': 'https://dapi.binance.com/dapi/v1',
+                    'dapiPrivate': 'https://dapi.binance.com/dapi/v1',
+                    'dapiData': 'https://dapi.binance.com/futures/data',
+                    'dapiPrivateV2': 'https://dapi.binance.com/dapi/v2',
                     'public': 'https://api.binance.com/api/v3',
                     'private': 'https://api.binance.com/api/v3',
                     'v3': 'https://api.binance.com/api/v3',
