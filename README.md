@@ -60,7 +60,12 @@ Note: on the coin-margined perps with futures, there were no opportunities at en
 
 
 
-NEEDS a minimum balance of $1000 in BTC (no other margin will work presently). If using a lesser balance, change divisor=100 along the top and replace with a number lesser than 100. Note this will create larger maker orders and mess up the exposure, meaning that my trial on youtube means basically nothing.
+NEEDS a minimum balance of $1000 in BTC, split 1/4 evenly with ADA, ETH, LINK and BTC coin-m balances. If using a lesser balance, change divisor=100 along the top and replace with a number lesser than 100. Note this will create larger maker orders and mess up the exposure, meaning that my trial on youtube means basically nothing.
+
+
+
+
+Alright so, coin-m futures need you to have balance in the coins you're looking to trade, rather than balance just in BTC. So, the script now assumes you have 1/4 your balance equally across LINK, ADA, ETH and BTC. I also was unable to test with my measly $25, as that wasn't enough for minimum trades into all those coins @ spot. USE AT OWN RISK. I haven't seen it enter into a set of orders yet.
 
 
 
