@@ -1,0 +1,1666 @@
+2020-09-07 21:39:56,756 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:39:57,209 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:39:57,565 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:39:57,612 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:39:57,678 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:39:58,442 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:39:59,302 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:00,128 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:00,246 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:00,340 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:00,686 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:01,920 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:02,158 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:02,692 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:02,956 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:03,499 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:03,786 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:04,228 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:05,466 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:05,646 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:40:05,738 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:06,376 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:07,164 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:40:07,195 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 72, in ticker
+    mids[ex][name + '-' + dt] = 0.5 * ( float(bid) + float(ask))
+NameError: name 'mids' is not defined
+2020-09-07 21:41:04,576 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:05,341 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:05,419 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:05,488 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:06,372 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:08,111 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:08,127 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:08,283 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:08,338 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:09,839 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:10,715 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:10,744 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:10,865 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:41,647 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:42,551 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:42,633 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:42,701 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:43,310 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:43,478 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:45,131 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:45,273 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:45,278 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:45,429 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:46,866 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:47,893 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:47,949 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:48,067 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:48,700 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:50,375 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:50,455 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:50,591 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 87, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:50,642 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:52,286 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:53,001 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:41:53,049 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 68, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:42:37,557 : ERROR : KRAKEN_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "c:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 209, in message_handler
+    await self._ticker(msg, msg['product_id'], timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\exchange\kraken_futures.py", line 99, in _ticker
+    await self.callback(TICKER, feed=self.id, pair=pair, bid=msg['bid'], ask=msg['ask'], timestamp=timestamp, receipt_timestamp=timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 71, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:42:38,325 : ERROR : OKEX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "c:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 163, in message_handler
+    await self._ticker(msg, timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\exchange\okcoin.py", line 65, in _ticker
+    await self.callback(callback_type, feed=self.id,
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 71, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:42:38,429 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "c:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 90, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:42:38,488 : ERROR : BINANCE_FUTURES: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "c:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 309, in message_handler
+    await self._ticker(msg, timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\exchange\binance.py", line 116, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 71, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:42:38,562 : ERROR : FTX: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "c:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "c:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 229, in message_handler
+    await self._ticker(msg, timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\exchange\ftx.py", line 171, in _ticker
+    await self.callback(TICKER, feed=self.id,
+  File "c:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 34, in __call__
+    await super().__call__(feed, pair, bid, ask, timestamp, receipt_timestamp)
+  File "c:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 71, in ticker
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:43:56,521 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 82, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:43:59,293 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 82, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:49:55,147 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 84, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:49:57,804 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 84, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:50:27,748 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 84, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:50:30,353 : ERROR : HUOBI_DM: encountered an exception, reconnecting
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 248, in _handler
+    await handler(message, self.last_msg[feed_id])
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 130, in message_handler
+    await self._book(msg, timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\exchange\huobi_dm.py", line 91, in _book
+    await self.book_callback(self.l2_book[pair], L2_BOOK, pair, forced, False, timestamp_normalize(self.id, msg['ts']), timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 118, in book_callback
+    await self.callback(L2_BOOK, feed=self.id, pair=pair, book=book, timestamp=timestamp, receipt_timestamp=receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\feed.py", line 132, in callback
+    await cb(**kwargs)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 42, in __call__
+    await super().__call__(feed, pair, book, timestamp, receipt_timestamp)
+  File "C:\Users\jaret\funding\cryptofeed\callback.py", line 21, in __call__
+    await self.callback(*args, **kwargs)
+  File "app2.py", line 84, in book
+    if 'BTC' in name and lastex != feed and lastbtc != 0.5 * ( float(bid) + float(ask)):
+UnboundLocalError: local variable 'lastex' referenced before assignment
+2020-09-07 21:55:48,325 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 242 bytes read on a total of 1301 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 22:23:51,547 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 1271 bytes read on a total of 1311 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 22:38:01,963 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 670 bytes read on a total of 1110 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 22:42:12,164 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 1095 bytes read on a total of 1440 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:29:53,449 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 603 bytes read on a total of 1323 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:30:27,414 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 785 bytes read on a total of 1299 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:32:40,575 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 336 bytes read on a total of 951 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:32:57,894 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 169 bytes read on a total of 1366 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:35:29,640 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 1217 bytes read on a total of 1369 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+2020-09-07 23:35:38,999 : WARNING : HUOBI_DM: encountered connection issue code = 1006 (connection closed abnormally [internal]), no reason - reconnecting...
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "C:\Python38\lib\site-packages\websockets\framing.py", line 133, in read
+    data = await reader(length)
+  File "C:\Python38\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 117 bytes read on a total of 1331 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 219, in _connect
+    await self._handler(websocket, feed.message_handler, feed.uuid)
+  File "C:\Users\jaret\funding\cryptofeed\feedhandler.py", line 246, in _handler
+    async for message in websocket:
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 439, in __aiter__
+    yield await self.recv()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 509, in recv
+    await self.ensure_open()
+  File "C:\Python38\lib\site-packages\websockets\protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
