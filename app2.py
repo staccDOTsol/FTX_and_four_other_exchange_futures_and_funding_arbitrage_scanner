@@ -11,6 +11,18 @@ import linecache
 from time import sleep
 
 import ccxt
+
+binance	 = ccxt.binance({'apiKey': apikey,   
+			'secret': apisecret,
+'enableRateLimit': True,
+"options":{"defaultMarket":"futures"},
+'urls': {'api': {
+                         'public': 'https://dapi.binance.com/dapi/v1',
+                         'private': 'https://dapi.binance.com/dapi/v1',},}
+})
+
+print(dir(binance))
+#sleep(10)
 SECONDS_IN_DAY	  = 3600 * 24
 from cryptofeed import FeedHandler
 from cryptofeed import FeedHandler
@@ -123,6 +135,13 @@ async def book(feed, pair, book, timestamp, receipt_timestamp):
     #print(mids)
     
     #print(f'Timestamp: {timestamp} Feed: {feed} Pair: {pair} Book Bid Size is {len(book[BID])} Ask Size is {len(book[ASK])}')
+def cancelall():
+    try:
+        binance.dapiPrivateDeleteAllopenorders()
+    except Exception as e:
+        print(e)
+        sleep(10)
+        cancelall()
 def get_bbo( contract ): # Get best b/o excluding own orders
     try:
         
@@ -268,14 +287,6 @@ ftx	 = ccxt.ftx({
 'enableRateLimit': True,
 'rateLimit': 36
 
-})
-binance	 = ccxt.binance({'apiKey': apikey,   
-			'secret': apisecret,
-'enableRateLimit': True,
-"options":{"defaultMarket":"futures"},
-'urls': {'api': {
-                         'public': 'https://dapi.binance.com/dapi/v1',
-                         'private': 'https://dapi.binance.com/dapi/v1',},}
 })
 markets = binance.fetchMarkets()
 futs = '200925'
@@ -554,7 +565,7 @@ def doupdates():
                 tobuy[coin.replace('PERP', futs)] = tobuy[coin.replace('PERP', futs)] * -1
             except:
                 abc=123
-    
+    cancelall()
     for coin in tobuy:
         #-100 btc
         #-800 
