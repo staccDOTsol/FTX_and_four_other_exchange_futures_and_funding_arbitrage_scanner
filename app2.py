@@ -539,10 +539,19 @@ def doupdates():
                     percs[coin] = APRS[ex][coin] / t
                                    #((1000000 * 0.66) * 75 /2) / 10
                     #((25 * 0.25 ) * 75 / 2) / 10
-                    tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
-                    if 'BTC' in coin:
-                        tobuy[coin] = tobuy[coin] / 10 
-                    tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
+                    # debug output for Remi
+                    print(coin)
+                    print(math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)))
+                    print(((1/divisor) * 0.5) / 75)
+                    print(math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)) > ((1/divisor) * 0.5) / 75)
+                    if math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)) > ((1/divisor) * 0.5) / 75: 
+                        tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
+                        if 'BTC' in coin:
+                            tobuy[coin] = tobuy[coin] / 10 
+                        tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
+                    else:
+                        tobuy[coin] = 0
+                        tobuy[coin.replace('PERP', futs)] = 0
             elif 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                 tobuy[coin] = 0
                 tobuy[coin.replace('PERP', futs)] = 0
@@ -555,7 +564,7 @@ def doupdates():
             except:
                 abc=123
     print(tobuy)
-    sleep(100)
+    #sleep(100)
     for coin in tobuy:
         cancelall(coin)
         #-100 btc
@@ -563,26 +572,27 @@ def doupdates():
         #100
         #800
         try:
-            if math.fabs(tobuy[coin] / (balance * 75)) > ((1/divisor) * 0.5) / 75: 
-                tobuy[coin] = tobuy[coin] - pos[coin] / 10
-                if 'BTC' in coin:
-                    tobuy[coin] = tobuy[coin] / 10
-                #print(tobuy)
-                direction = 'BUY'
-                if tobuy[coin] < 0:
-                    direction = 'SELL'
-                    tobuy[coin] = tobuy[coin] * -1
-                if tobuy[coin] != 0:
-                    #print(tobuy[coin])
-                    bbo = mids['binance'][coin.replace('USD', '-USD')]
+            
+        
+            tobuy[coin] = tobuy[coin] - pos[coin] / 10
+            if 'BTC' in coin:
+                tobuy[coin] = tobuy[coin] / 10
+            #print(tobuy)
+            direction = 'BUY'
+            if tobuy[coin] < 0:
+                direction = 'SELL'
+                tobuy[coin] = tobuy[coin] * -1
+            if tobuy[coin] != 0:
+                #print(tobuy[coin])
+                bbo = mids['binance'][coin.replace('USD', '-USD')]
+                
+                print(int(tobuy[coin] / divisor))
+                print(tobuy[coin])
+                if direction == 'SELL':
                     
-                    print(int(tobuy[coin] / divisor))
-                    print(tobuy[coin])
-                    if direction == 'SELL':
-                        
-                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['bid'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
-                    else:
-                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['ask'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                    binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['bid'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                else:
+                    binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['ask'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
         except:
             PrintException()
     print(tobuy)
