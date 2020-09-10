@@ -631,6 +631,7 @@ def updateBalance():
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
+    balance = newbal
     print(balance)
 while True:
     updatePositions()
