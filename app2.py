@@ -631,8 +631,6 @@ def updateBalance():
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
-    sleep(100)
-    balance = newbal * btc_perp
     print(balance)
 while True:
     updatePositions()
