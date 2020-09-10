@@ -1,5 +1,5 @@
-apikey = 'ao8QMfn5AeX6rQY2LHLcEvKFsQw6uPHQVZWoG56M1lhoQidh65TgQRjDpFM1KTcZ'
-apisecret = 'BnMDYkDCtD97RhJxXZV0bwmx8qpyN1QfxRACF0dpGS0eRcH20CwWqpMiMIaghOaI'
+apikey = ''
+apisecret = ''
 divisor=100
 
 import requests 
@@ -541,7 +541,7 @@ def doupdates():
                                    #((1000000 * 0.66) * 75 /2) / 10
                     #((25 * 0.25 ) * 75 / 2) / 10
                     
-                    tobuy[coin] = ((balances[coin.split('-')[0]] * percs[coin]) * 75 / 2) / 10
+                    tobuy[coin] = ((balances[coin.split('_')[0].replace('USD', '')] * percs[coin]) * 75 / 2) / 10
                     tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
                     
             elif 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
@@ -566,7 +566,7 @@ def doupdates():
         try:
             
         
-            if math.fabs((tobuy[coin]) / (balances[coin.split('-')[0]] * 75)) > ((1/divisor) * 0.5) / 75: 
+            if math.fabs((tobuy[coin]) / (balances[coin.split('_')[0].replace('USD', '')] * 75)) > ((1/divisor) * 0.5) / 75: 
                         
                 if 'BTC' in coin:
                     tobuy[coin] = tobuy[coin] / 10
@@ -595,6 +595,8 @@ def doupdates():
 balances = {}
 totrade = ['BTC', 'ETH', 'LINK', 'ADA']
 pos = {}
+for t in totrade:
+    balances[t] = 0
 def updatePositions():
     global positions
     positions	   = binance.dapiPrivateGetPositionRisk()
@@ -651,8 +653,8 @@ while True:
                 except:
                     abc=123
     #doCalc()
-    sleep(10)
+    sleep(20)
     updateBalance()
     sleep(5)
     doupdates()
-    sleep(45)
+    sleep(35)
