@@ -537,7 +537,7 @@ def doupdates():
         for coin in APRS[ex]:
             
             if APRS[ex][coin] > 0 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
-                    percs[coin] = APRS[ex][coin] / t
+                    percs[coin] = 1#APRS[ex][coin] / t
                                    #((1000000 * 0.66) * 75 /2) / 10
                     #((25 * 0.25 ) * 75 / 2) / 10
                     
