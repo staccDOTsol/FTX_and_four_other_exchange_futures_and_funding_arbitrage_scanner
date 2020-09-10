@@ -1,8 +1,8 @@
-apikey = ''
-apisecret = ''
+apikey = 'ao8QMfn5AeX6rQY2LHLcEvKFsQw6uPHQVZWoG56M1lhoQidh65TgQRjDpFM1KTcZ'
+apisecret = 'BnMDYkDCtD97RhJxXZV0bwmx8qpyN1QfxRACF0dpGS0eRcH20CwWqpMiMIaghOaI'
 divisor=100
 
-import requests
+import requests 
 import math
 from datetime import timedelta
 import datetime
@@ -535,23 +535,15 @@ def doupdates():
 
         winner = ""
         for coin in APRS[ex]:
+            
             if APRS[ex][coin] > 0 and 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                     percs[coin] = APRS[ex][coin] / t
                                    #((1000000 * 0.66) * 75 /2) / 10
                     #((25 * 0.25 ) * 75 / 2) / 10
-                    # debug output for Remi
-                    print(coin)
-                    print(math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)))
-                    print(((1/divisor) * 0.5) / 75)
-                    print(math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)) > ((1/divisor) * 0.5) / 75)
-                    if math.fabs(((balance * percs[coin]) * 75 / 2) / (balance * 75)) > ((1/divisor) * 0.5) / 75: 
-                        tobuy[coin] = ((balance * percs[coin]) * 75 / 2) / 10
-                        if 'BTC' in coin:
-                            tobuy[coin] = tobuy[coin] / 10 
-                        tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
-                    else:
-                        tobuy[coin] = 0
-                        tobuy[coin.replace('PERP', futs)] = 0
+                    
+                    tobuy[coin] = ((balances[coin.split('-')[0]] * percs[coin]) * 75 / 2) / 10
+                    tobuy[coin.replace('PERP', futs)] = tobuy[coin] * -1
+                    
             elif 'LINK' in coin or 'BTC' in coin or 'ETH' in coin or 'ADA' in coin:
                 tobuy[coin] = 0
                 tobuy[coin.replace('PERP', futs)] = 0
@@ -574,29 +566,34 @@ def doupdates():
         try:
             
         
-            tobuy[coin] = tobuy[coin] - pos[coin] / 10
-            if 'BTC' in coin:
-                tobuy[coin] = tobuy[coin] / 10
-            #print(tobuy)
-            direction = 'BUY'
-            if tobuy[coin] < 0:
-                direction = 'SELL'
-                tobuy[coin] = tobuy[coin] * -1
-            if tobuy[coin] != 0:
-                #print(tobuy[coin])
-                bbo = mids['binance'][coin.replace('USD', '-USD')]
-                
-                print(int(tobuy[coin] / divisor))
-                print(tobuy[coin])
-                if direction == 'SELL':
-                    
-                    binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['bid'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+            if math.fabs((tobuy[coin]) / (balances[coin.split('-')[0]] * 75)) > ((1/divisor) * 0.5) / 75: 
+                        
+                if 'BTC' in coin:
+                    tobuy[coin] = tobuy[coin] / 10
+                    tobuy[coin] = tobuy[coin] - pos[coin] / 10
                 else:
-                    binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['ask'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                    tobuy[coin] = tobuy[coin] - pos[coin] / 100
+                #print(tobuy)
+                direction = 'BUY'
+                if tobuy[coin] < 0:
+                    direction = 'SELL'
+                    tobuy[coin] = tobuy[coin] * -1
+                if tobuy[coin] != 0:
+                    #print(tobuy[coin])
+                    bbo = mids['binance'][coin.replace('USD', '-USD')]
+                    
+                    print(int(tobuy[coin] / divisor))
+                    print(tobuy[coin])
+                    if direction == 'SELL':
+                        
+                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['bid'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
+                    else:
+                        binance.dapiPrivatePostOrder(  {'timeInForce': 'GTC', 'symbol': coin, 'side': direction, 'type': 'LIMIT', 'price': bbo['ask'], 'quantity': int(tobuy[coin] / divisor),"newClientOrderId": "x-v0tiKJjj-" + randomword(15)})
         except:
             PrintException()
     print(tobuy)
-balance = 0
+balances = {}
+totrade = ['BTC', 'ETH', 'LINK', 'ADA']
 pos = {}
 def updatePositions():
     global positions
@@ -620,19 +617,19 @@ def updateBalance():
     ##print(bal2)
     for coin in bal2['info']['assets']:
         if coin['asset'] == 'BTC':
-            newbal = newbal + float(coin['marginBalance']) * btc_perp
+            balances['BTC'] + float(coin['marginBalance']) * btc_perp
         if coin['asset'] == 'ADA':
-            newbal = newbal + float(coin['marginBalance']) * ada_perp
+            balances['ADA'] + float(coin['marginBalance']) * ada_perp
         if coin['asset'] == 'ETH':
-            newbal = newbal + float(coin['marginBalance']) * eth_perp
+            balances['ETH'] + float(coin['marginBalance']) * eth_perp
         if coin['asset'] == 'LINK':
-            newbal = newbal + float(coin['marginBalance']) * link_perp
+            balances['LINK'] + float(coin['marginBalance']) * link_perp
 
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
-    balance = newbal
-    print(balance)
+    #balance = newbal
+    #print(balance)
 while True:
     updatePositions()
     for ex in mids:
