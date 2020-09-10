@@ -619,13 +619,13 @@ def updateBalance():
     ##print(bal2)
     for coin in bal2['info']['assets']:
         if coin['asset'] == 'BTC':
-            balances['BTC'] + float(coin['marginBalance']) * btc_perp
+            balances['BTC'] = float(coin['marginBalance']) * btc_perp
         if coin['asset'] == 'ADA':
-            balances['ADA'] + float(coin['marginBalance']) * ada_perp
+            balances['ADA'] = float(coin['marginBalance']) * ada_perp
         if coin['asset'] == 'ETH':
-            balances['ETH'] + float(coin['marginBalance']) * eth_perp
+            balances['ETH'] = float(coin['marginBalance']) * eth_perp
         if coin['asset'] == 'LINK':
-            balances['LINK'] + float(coin['marginBalance']) * link_perp
+            balances['LINK'] = float(coin['marginBalance']) * link_perp
 
         im = float(coin['initialMargin'])
         if newbal != 0:
