@@ -612,17 +612,27 @@ def updateBalance():
     newbal = 0
     #print(bal2)
     ##print(bal2)
+    btc_perp = (mids['binance']['BTC-USD_PERP']['ask'] + mids['binance']['BTC-USD_PERP']['bid']) / 2
+    ada_perp = (mids['binance']['ADA-USD_PERP']['ask'] + mids['binance']['ADA-USD_PERP']['bid']) / 2
+    eth_perp = (mids['binance']['ETH-USD_PERP']['ask'] + mids['binance']['ETH-USD_PERP']['bid']) / 2
+    link_perp = (mids['binance']['LINK-USD_PERP']['ask'] + mids['binance']['LINK-USD_PERP']['bid']) / 2
+    
     ##print(bal2)
     for coin in bal2['info']['assets']:
-        #print(coin)
-        newbal = newbal + float(coin['marginBalance'])
+        if coin['asset'] == 'BTC':
+            newbal = newbal + float(coin['marginBalance']) * btc_perp
+        if coin['asset'] == 'ADA':
+            newbal = newbal + float(coin['marginBalance']) * ada_perp
+        if coin['asset'] == 'ETH':
+            newbal = newbal + float(coin['marginBalance']) * eth_perp
+        if coin['asset'] == 'LINK':
+            newbal = newbal + float(coin['marginBalance']) * link_perp
 
         im = float(coin['initialMargin'])
         if newbal != 0:
             im = im / newbal
-    btc_perp = (mids['binance']['BTC-USD_PERP']['ask'] + mids['binance']['BTC-USD_PERP']['bid']) / 2
-                    
-    balance = newbal * btc_perp * 4
+    sleep(100)
+    balance = newbal * btc_perp
     print(balance)
 while True:
     updatePositions()
