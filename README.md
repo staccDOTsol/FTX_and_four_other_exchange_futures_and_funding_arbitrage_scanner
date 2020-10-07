@@ -1,3 +1,9 @@
+# New, much more profitable bot available in return for referral link use:
+
+https://hacks.substack.com/p/huobi-trader-live-now-we-watch
+
+
+
 Hey all, Remi, Lester, sim_tee,
 
 
