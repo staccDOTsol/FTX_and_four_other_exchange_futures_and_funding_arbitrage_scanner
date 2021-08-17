@@ -1,0 +1,7 @@
+requests
+ccxt
+six
+flask
+python-dateutil
+matplotlib
+pandas
